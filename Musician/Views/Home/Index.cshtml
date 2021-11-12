@@ -1,4 +1,10 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using Musician.Utility
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     Layout = null;
 }
@@ -32,7 +38,7 @@
                 <div class="col-md-6 d-flex align-items-center">
                     <p class="mb-0 phone pl-md-2">
                         <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> 0775717603</a>
-                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> FaisalAltarteer9@gmail.com.</a>
+                        <a href="#"><span class="fa fa-paper-plane mr-1"></span> Musician@musician.com</a>
                     </p>
                 </div>
                 <div class="col-md-6 d-flex justify-content-md-end">
@@ -44,8 +50,17 @@
                             <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="fab fa-whatsapp"></i></span></a>
                         </p>
                     </div>
+
+
                     <div class="reg">
-                        <p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="#">Log In</a></p>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <p class="mb-0"><a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a> <a id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "AllProduct", new { area = "" })">Logout</a></p>
+                        }
+                        else
+                        {
+                            <p class="mb-0"><a id="register" asp-area="Identity" asp-page="/Account/Register" class="mr-2">Sign Up</a> <a id="login" asp-area="Identity" asp-page="/Account/Login">Log In</a></p>
+                        }
                     </div>
                 </div>
             </div>
@@ -54,60 +69,42 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Musician <span>Store</span></a>
-            <div class="order-lg-last btn-group">
-                <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="flaticon-shopping-bag"></span>
-                    <div class="d-flex justify-content-center align-items-center"><small>3</small></div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-item d-flex align-items-start" href="#">
-                        <div class="img" style="background-image: url(images/prod-1.jpg);"></div>
-                        <div class="text pl-3">
-                            <h4>Bacardi 151</h4>
-                            <p class="mb-0"><a href="#" class="price">$25.99</a><span class="quantity ml-3">Quantity: 01</span></p>
-                        </div>
-                    </div>
-                    <div class="dropdown-item d-flex align-items-start" href="#">
-                        <div class="img" style="background-image: url(images/prod-2.jpg);"></div>
-                        <div class="text pl-3">
-                            <h4>Jim Beam Kentucky Straight</h4>
-                            <p class="mb-0"><a href="#" class="price">$30.89</a><span class="quantity ml-3">Quantity: 02</span></p>
-                        </div>
-                    </div>
-                    <div class="dropdown-item d-flex align-items-start" href="#">
-                        <div class="img" style="background-image: url(images/prod-3.jpg);"></div>
-                        <div class="text pl-3">
-                            <h4>Citadelle</h4>
-                            <p class="mb-0"><a href="#" class="price">$22.50</a><span class="quantity ml-3">Quantity: 01</span></p>
-                        </div>
-                    </div>
-                    <a class="dropdown-item text-center btn-link d-block w-100" href="cart.html">
-                        View All
-                        <span class="ion-ios-arrow-round-forward"></span>
-                    </a>
-                </div>
-            </div>
-
+            <a class="navbar-brand" href="index.html">Musician <span>store</span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="oi oi-menu"></span> Menu
             </button>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Content Managment</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a>
-                        <a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a>
-                        @*<a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>*@
-                    </div>
-                </li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="AllProduct">Products</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="AboutUs">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Content Managment</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" asp-controller="Category" asp-action="Index">Category</a>
+                            <a class="dropdown-item" asp-controller="Product" asp-action="Index">Product</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="AllProduct">Products</a></li>
+                    <li class="nav-item">
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                        {
+                            <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                @{
+                                    var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count;
+                                }
+                                <i class="fas fa-shopping-cart"></i> &nbsp;(@count)
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i> &nbsp;(0)
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!-- END nav -->
@@ -166,7 +163,7 @@
         </div>
     </section>
 
-    
+
 
     <section class="ftco-section ftco-no-pb">
         <div class="container">
@@ -211,8 +208,8 @@
             </div>
         </div>
     </section>
-    
-    
+
+
 
     <section class="ftco-section testimony-section img" style="background-image: url(images/Product/11111.jpg);">
         <div class="overlay"></div>
@@ -249,7 +246,7 @@
                                 <div class="text">
                                     <p class="mb-4">
                                         @*The keyboard is great and the delivery was really quick.Great quick service. Can't fault them
-                                        Highly recommended!*@
+                                            Highly recommended!*@
                                         شوف هوه كثير خرا بس الله بعين...
                                     </p>
                                     <div class="d-flex align-items-center">
@@ -267,7 +264,7 @@
                                 <div class="text">
                                     <p class="mb-4">
                                         😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂
-                                       @*Great quality guitar at a reasonable price for a starter for my son who is a big fan of Coco. Really impressed with the service too.*@
+                                        @*Great quality guitar at a reasonable price for a starter for my son who is a big fan of Coco. Really impressed with the service too.*@
                                     </p>
                                     <div class="d-flex align-items-center">
                                         <div class="user-img" style="background-image: url(images/M_index/3.jpg)"></div>
@@ -280,7 +277,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap py-4">
-                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></div>
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-quote-left"></span></div>
                                 <div class="text">
                                     <p class="mb-4">
                                         Very happy with product, delivery. The stand didn't come with instructions but my 9 year put it together in 2 minutes so not a problem.
@@ -295,7 +292,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
             </div>
@@ -304,7 +301,7 @@
 
 
 
-    
+
 
     <footer class="ftco-footer">
         <div class="container">
