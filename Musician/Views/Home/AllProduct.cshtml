@@ -1,0 +1,126 @@
+﻿@model Musician.Models.ViewModels.HomeVM
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .button {
+                background-color: orangered; /* Green */
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            .button1 {
+                background-color: white;
+                color: orangered;
+                border: 2px solid orangered;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+
+                .button1:hover {
+                    background-color: orangered;
+                    color: white;
+                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                }
+        </style>
+    </head>
+    <body>
+
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <br />
+
+
+                    <div class="text-center">
+                        <button class="button button1 btn-lg filter-button" data-filter="all">All</button>
+                        @foreach (var obj in Model.Categories)
+                        {
+                            <button class="button button1 btn-lg filter-button" data-filter="@obj.Name.Replace(' ', '_')">@obj.Name</button>
+
+                        }
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        @foreach (var prod in Model.Products)
+                        {
+                            //display all product
+
+                            <partial name="_IndividualProductCard" model="prod" />
+
+                        }
+                    </div>
+                </div>
+
+
+
+
+                @section Scripts{
+                    <script>
+                        $(document).ready(function () {
+
+                            $(".filter-button").click(function () {
+
+                                var value = $(this).attr('data-filter');
+                                if (value == "all") {
+                                    $('.filter').show('1000');
+                                }
+                                else {
+                                    $(".filter").not('.' + value).hide('3000');
+                                    $('.filter').filter('.' + value).show('3000');
+
+                                }
+                            });
+
+                        });
+                    </script>
+                }
+
+
+
+
+
+
+
+
+                @*<div class="row">
+                        <div class="col-md-4 d-flex">
+                            <div class="product ftco-animate">
+                                <img d-flex align-items-center justify-content-center" style="background-image: url('Images/Product');" >
+                                    <div class="desc">
+                                        <p class="meta-prod d-flex">
+                                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
+                                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="text text-center">
+                                    <span class="category">Rum</span>
+                                    <h2>The Glenlivet</h2>
+                                    <span class="price">$69.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+
+            </div>
+
+        </div>
+
+    </body>
+</html>

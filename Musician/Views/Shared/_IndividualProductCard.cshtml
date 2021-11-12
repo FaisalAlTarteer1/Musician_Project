@@ -1,0 +1,96 @@
+﻿@model Musician.Models.Product
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .button {
+                background-color: orangered; /* Green */
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            .button1 {
+                background-color: white;
+                color: orangered;
+                border: 2px solid orangered;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            }
+
+                .button1:hover {
+                    background-color: orangered;
+                    color: white;
+                    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                }
+        </style>
+    </head>
+    <body>
+
+        <div class="col-lg-4 col-md-6 pb-4 filter @Model.Category.Name.Replace(' ','_')">
+            <!-- Card-->
+            <br />
+
+            <div class="card btn-outline-white rounded shadow-sm" style="border:0px double lavenderblush">
+
+                <img class="card-img-top img-fluid- d-block- mx-auto- mb-3" style="height:240px;width:340px" src="@WC.ImagePath@Model.Image" alt="Card image cap">
+                <div class="card-body p-1 px-3 ">
+                    <div>
+                        <span class="category float-left" style="color:orangered;font-style:italic">@Model.Category.Name</span>
+                        <span class="category float-right" style="color:orangered">@string.Format("{0:c0}", @Model.Price)</span> 
+                        <br />
+                    
+                    <div class="text text-center">
+                        <h3 style="color:orangered">@Model.Name</h3>
+                    </div>
+                    <div class="col-12 p-0 text text-center">
+                        <a asp-action="Details" asp-route-id="@Model.Id" class="button button1 btn-sm p-0" style="height:30px;width:270px">View Details</a>
+
+                        @*<a asp-action="Details" asp-route-id="@Model.Id" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility">Details</span></a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+            @*<div class="card bg-white rounded shadow-sm" style="border:1px solid #222">
+                    <div class="card-body px-3 pt-3 pb-1 row">
+                        <div class="col-7"><label class="float-left">@Model.Name</label></div>
+                        <div class="col-5"><label class="float-right"><span class="text-info h5">@string.Format("{0:c0}", @Model.Price)</span> / sqft</label> </div>
+                    </div>
+                    <img class="card-img-top img-fluid d-block mx-auto mb-3" src="@WC.ImagePath@Model.Image" alt="Card image cap">
+                    <div class="card-body p-1 px-3 row">
+                        <div class="col-6">
+                            <span class="badge p-2 border w-100" style="background-color:lavenderblush">@Model.Category.Name</span>
+                        </div>
+                        <div class="col-12 p-1">
+                            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-dark form-control btn-sm p-2" style="height:40px">View Details</a>
+                        </div>
+                    </div>
+                </div>*@
+
+        
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
