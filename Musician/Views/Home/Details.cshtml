@@ -148,7 +148,7 @@
 
 
 
-   
+
     <img src="~/Images/Product/11111.jpg" style="height:320px;width:1265px" />
     <div class="overlay"></div>
     <br />
@@ -170,33 +170,91 @@
                     <h3 style="color:orangered">@string.Format("{0:c0}", @Model.product.Price)</h3>
                     <p font-style:italic">
                         @Model.product.Description
-                    </p>                    
-                <br />
-            
-            <div class="row">
-            <div class="col-sm ">
-                <a asp-action="AllProduct" class="button button1">Back to List</a>
-                
-            </div>
-            <div class="col-12 col-md-6 ">
-                @if (Model.ExistsInCart)
-                {
-                    <a asp-action="RemoveFromCart" asp-route-id="@Model.product.Id" class="button button2">Remove From Cart</a>
-                }
-                else
-                {
-                    <button type="submit" asp-route-id="@Model.product.Id" class="button button2">Add to Cart</button>
-                }
-            </div>
+                    </p>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-sm ">
+                            <a asp-action="AllProduct" class="button button1">Back to List</a>
+
+                        </div>
+                        <div class="col-12 col-md-6 ">
+                            @if (Model.ExistsInCart)
+                            {
+                                <a asp-action="RemoveFromCart" asp-route-id="@Model.product.Id" class="button button2">Remove From Cart</a>
+                            }
+                            else
+                            {
+                                <button type="submit" asp-route-id="@Model.product.Id" class="button button2">Add to Cart</button>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-            </div>
-        
 
 
-        
+
+
     </form>
+    <br />
+    <footer class="ftco-footer">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-sm-12 col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2 logo"><a href="#">Musician <span>Store</span></a></h2>
+                        <p>Where Music Was Born.</p>
+                        <ul class="ftco-footer-social list-unstyled mt-2">
+                            <li class="ftco-animate"><a href="#"><span class="fab fa-instagram"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fab fa-facebook"></span></a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">Quick Links</h2>
+                        <ul class="list-unstyled">
+                            <li><a asp-controller="Home" asp-action="AboutUs"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
+                            <li><a asp-area="Identity" asp-page="/Account/Register"><span class="fa fa-chevron-right mr-2"></span>Register</a></li>
+                            <li><a asp-area="Identity" asp-page="/Account/Login"><span class="fa fa-chevron-right mr-2"></span>Log In</a></li>
+                            <li><a asp-controller="Cart" asp-action="Index"><span class="fa fa-chevron-right mr-2"></span>My Order</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon fa fa-map marker"></span><span class="text">203 Jabal St. Mountain View, Amman, Jordan</span></li>
+                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon fa fa-paper-plane pr-4"></span><span class="text">info@musician.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid px-0 py-5 bg-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <p class="mb-0" style="color: rgba(255,255,255,.5);">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This project is made with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a href="https://colorli.m" target="_blank">Faisal</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 
@@ -205,20 +263,20 @@
 
 
 
-        <script src="~/Theme/js/jquery.min.js"></script>
-        <script src="~/Theme/js/jquery-migrate-3.0.1.min.js"></script>
-        <script src="~/Theme/js/popper.min.js"></script>
-        <script src="~/Theme/js/bootstrap.min.js"></script>
-        <script src="~/Theme/js/jquery.easing.1.3.js"></script>
-        <script src="~/Theme/js/jquery.waypoints.min.js"></script>
-        <script src="~/Theme/js/jquery.stellar.min.js"></script>
-        <script src="~/Theme/js/owl.carousel.min.js"></script>
-        <script src="~/Theme/js/jquery.magnific-popup.min.js"></script>
-        <script src="~/Theme/js/jquery.animateNumber.min.js"></script>
-        <script src="~/Theme/js/scrollax.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-        <script src="~/Theme/js/google-map.js"></script>
-        <script src="~/Theme/js/main.js"></script>
+    <script src="~/Theme/js/jquery.min.js"></script>
+    <script src="~/Theme/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Theme/js/popper.min.js"></script>
+    <script src="~/Theme/js/bootstrap.min.js"></script>
+    <script src="~/Theme/js/jquery.easing.1.3.js"></script>
+    <script src="~/Theme/js/jquery.waypoints.min.js"></script>
+    <script src="~/Theme/js/jquery.stellar.min.js"></script>
+    <script src="~/Theme/js/owl.carousel.min.js"></script>
+    <script src="~/Theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Theme/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Theme/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/Theme/js/google-map.js"></script>
+    <script src="~/Theme/js/main.js"></script>
 
 
 
